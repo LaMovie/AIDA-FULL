@@ -1,517 +1,581 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahorcado</title>
-  <link rel="stylesheet" href="styles.css">
-  
+  <title>🍿AIDA🍿</title>
 <style>
-body {
-    background: #000;
+body{
+    margin-top: 3vh;
+    background: black;
 }
-#letterInput {
-    color: black;
-    background: gold;
-    font-weight: bold;
-    border-radius: 15px;   
-    box-shadow: 0 0 30px red; 
-    
-  &:hover {
-      scale: 105%;
-  }
+.summary {
+    background:purple;
+    color:white;
+    border-radius:50px;
+    padding:5px;
 }
-#Buscar {
-    color: #fdf;
-    opacity: .7;
-    background: maroon;   
-    border-radius: 10px;  
-    box-shadow: 0 0 30px red; 
-    border: .5px solid Brown; 
-    
-  &:hover {
-      scale: 120%;
-  }   
+iframe {
+    width: 100%;
+    height: 28vh;
+    border-radius: 5%;
+    border-top: .5vh solid brown;
+    border-left: 2vh solid brown;
+    border-right: .1vh solid brown;
+    border-bottom: 2vh solid #800000;
+    background: url(https://bit.ly/3RRIMoA);
 }
-#wordToGuess {
-      margin: 5px;
-      color: #fdf;
-      height: 60px;
-      transition: .8s;
-      font-size: 38px;   
-      background: black;
-      border-radius: 10px;  
-  }  
-  
-#X {
-    color: red;  
-    width: 50%;
-    display: flex; 
+.link {
+    background: #800090;
+    color:gold;
+    border-radius:10px;
+    opacity:0.8;
+    padding:8px;
+    width:0;
+    font-size:20px;
+}
+#opaco{
+    color:gray;
+    opacity:0.3;
+    font-weight:bold;
+    font-size:25px;
+}
+button{
+    background:gray;
+    color:black;
+    opacity:0.5;
+    font-weight:bold;
+    font-size:15px;
+    padding:1px;
+    border-radius:50px;
+}
+#A{
+    display: grid;
+    background:#800050;
+    border-radius:20px;
+    scale: 90%;    
+    justify-content: center;
+}
+#mas{
+    border-radius:50px;
+    background:gray;
+    color:red;
+}
+</style>  
+      <!-- STYLE ROTATIVO -->
      
-    font-weight: bold;
-    border-radius: 20px;
-    animation: toons 3s linear infinite running;
-    
-  &:hover {
-      transform: scale(.5);
-  }
-}   
-@keyframes toons {
-      0%{
-          scale: 90%;
-          box-shadow: 0 0 30px gold;
-      }
-      25%{
-          transform: perspective(500px)rotateY(20deg);
-          box-shadow: 0 0 30px red; 
-      }
-      50%{
-          scale: 80%;
-          box-shadow: 0 0 30px #4f9;
-      }
+<style>
+#I{
+             box-sizing: border-box;
+             width: 5em;
+             height: 3em;
+             font-size: 20px;
+             border-radius: 0.5em;
+             margin: 0.5em;
+             box-shadow: 0 01em rgba(0,0,0,0.2);
+             color: white;
+             font-family: sans-serif; 
+             text-transform: capitalize;
+             line-height: 3em;
+             transition: 0.3s;
+             cursor: pointer;
 }
-#guessedLetters {
-    color: #f9f;
-    width: 70%;    
-    font-weight: bold;
-    border-radius: 10px;
-    border: 1px solid #4f9;
-    box-shadow: 0 0 30px #4f9;
-    animation: toons 20s linear infinite alternate running;
+summary{
+    background:purple;
+    border-radius: 50%;
 }
-#message {        
-    color: #4f9;
-    font-size: 40px;
-    border-radius: 20px;
-    animation: toons 3s linear infinite running;
-}
-#mess {   
-    color: orange;
-}
-#miss {
-    color: red;
-    font-size: 40px;
-    border-radius: 20px;
-    animation: toons 3s linear infinite running;
-}
-#Ojos {
+.fila {
     display: flex;
+    overflow: scroll;
+    position:relative;
+    left:-10px;
+    top:0px;
+    scale:95%;
+    gap: 5px;
+    justify-content: start;
+}
+#Hr1 {
+    width: 10%;
+    height: 1px;
+    background: gray;
+    transform: rotate(80deg);
+}
+#Hr2 {
+    width: 10%;
+    height: 1px;
+    background: gray;
+    transform: translate(2vh, -1vh)rotate(-80deg);
+}
+</style>
+<style>                 
+#I:nth-child(odd) {
+             background: linear-gradient(to right,orange, tomato, blue);
+text-align: left;
+             padding-left: 10%;
+             transform: perspective(500px)rotateX(45deg);     
+}              
+#I:nth-child(even) {
+             background: linear-gradient(to left,orange, tomato, gold);
+             text-align: right;
+             padding-right: 10%;
+             transform: perspective(500px)rotateX(-45deg);     
+}
+#I:nth-child(odd):hover {
+             transform: perspective(200px)rotateY(55deg);
+             padding-left: 5%;     
+}
+       
+
+#I:nth-child(even):hover{
+             transform: perspective(200px)rotateY(-55deg);
+             padding-right: 5%;     
+}
+</style>
+<style>
+#body{
+    transform: rotate(-90deg);
+    scale:90%;
+    position: fixed;
+    width:48%;
+    height:40%;
+    left: 0%;
+    top: 25%;
+    display:grid;    
+}
+#iframe {
+    width: 100%;
+    height: 80vh;
+}
+a {
     width: 50%;
-    height: 100px;
-}
-#Load {
-    width: 20%;
-    color: #fff;
-    opacity: .6;
-    background: #000;   
-    border-radius: 10px;
-    transform: translate(140%, 20px);
-    border: 1px solid #f9f;   
-    
-  &:hover {
-      scale: 110%;
-  } 
-}
-#Music {
-    width: 15%;
-    color: #fff;
-    left: -110px;   
-    top: 65px;
-    opacity: .6;
-    background: #000;   
-    position: relative;   
-    border-radius: 10px;
-    border: 1px solid #f9f;  
-    transform: perspective(500px)rotateX(50deg);
-    
-  &:hover {
-      scale: 120%;
-      animation: toon 3s linear infinite running;
-  }
-    
-}
-@keyframes toon {
-    0%{
-        border: 1px solid green;
-    }
-    25%{
-        border: 1px solid red;
-    }
-    50%{
-        border: 1px solid fuchsia;
-    }
-    75%{
-        border: 1px solid gold;
-    }
-    100%{
-        border: 1px solid orange;
-    }
-}
-#All {
-    margin: 4rem auto;
-}
-#Compact {
-    scale: 75%;
-}
-#D {
     color: gold;
-}
-#Menta {
-    color: #4f9;
-    opacity: 1;
-    animation: dMenta 1s infinite 3s running;
-    
-}
-@keyframes dMenta {
-    0%{
-        opacity: .5;
-    }
-    25%{
-        opacity: 1;
-    }
-    50%{
-        opacity: .5;
-    }
-    55%{
-        opacity: .5;
-    }
-    60%{
-        opacity: 1;
-    }
-    70%{
-        opacity: .5;
-    }
-    75%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 1;
-    }
-}
-#contador {
-    color: red;
-    opacity: .5;
-    margin: 0% 30%;
     font-weight: bold;
-}
-
-</style>
-
-<style>
-#Modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  animation: fondo 2s linear 1 running;
-  opacity: 0;
-}
-
-.loader {
-    box-shadow: 0 0 30px 10px #f6d;
-  background: ;
-  border: 8px solid fuchsia; 
-  border-top: 8px solid #999;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear 1 running;
-  opacity: 0;
-}
-
-@keyframes spin {
-    0% {opacity: 1; }
-  10% { transform: rotate(0deg); }
-  95% { transform: rotate(360deg); }
-  99% { opacity: 0; }
-  100% { display: none; }
-}
-
-@keyframes fondo {
-    0% {opacity: 1; }
-    99% {opacity: 1; }
-  100% { opacity: 0; }
-}
-#H {
-    margin: 20rem 5rem;
-    color: gold;
-}
-#xXx {
-    opacity: 0.5;
-}
-
-</style>
-
-
-<style>
-.G {
-    animation: win 2s linear 1 running;
-}
-@keyframes win {
-    0%{ transform: scale(2); }
-    30%{ transform: scale(1); }
-    75%{ transform: scale(2); }
-    100%{ transform: scale(1); }
-}
-.L {
-	-webkit-animation: puff-in-hor 1.5s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-	        animation: puff-in-hor 1.5s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-}
-
-@-webkit-keyframes puff-in-hor {
-  0% {
-    -webkit-transform: scaleX(2);
-            transform: scaleX(2);
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-    opacity: 1;
-  }
-}
-@keyframes puff-in-hor {
-  0% {
-    -webkit-transform: scaleX(2);
-            transform: scaleX(2);
-    -webkit-filter: blur(4px);
-            filter: blur(4px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-    opacity: 1;
-  }
-}
-#Volumen {
-    left: 5%;
-    top: -70vh;
-    z-index: 4000;
-    display: none;
-    position: relative;
+    text-decoration: none;
+    border-radius: 50%;
 }
 </style>
-
 </head>
 <body>
-            <center>
-         <div id="Modal">
-    <div class="loader"></div>
-            </div>
-             
-   <input id="Load" type="button" value="Load" onclick="recaRgar()">
-  
-  <input id="Music" type="button" value="Music" onclick="play3()">
+            <center>    
+    <img hidden src="https://bit.ly/3RRIMoA"/>   
+
+<hr id="Hr1"/><hr id="Hr2"/>            
+        <div>
+ <iframe src="https://geo.dailymotion.com/player.html?video=x997dr4" style="width:100%; aspect-ration:16/9" frameborder="0" allowfullscreen="true" allow="encrypted-media" name="WILLOW"></iframe></div>            
              <br/>
-       
-         <div id="All">
-  
-        <div id="Ojos">
-<h1 id="X">❤️</h1><h1 id="X">❤️</h1>  
-        </div>
-        
- <p id="guessedLetters"></p>  
-           <br/>
-  <p id="contador">ViDAS: 9</p> 
-           <br/>
-     <div id="Compact">
-  <p><span id="wordToGuess"></span></p>
-         </div>
-           <br/>
-    
-  <input type="text" id="letterInput">
- 
- 
-  <p id="message"></p>
-  <p id="mess"></p><br/>
-  <p id="miss"></p>
-  <script src="script.js"></script>
-  
-           </div>
-  
-          </center>
-           
+         <div id="Total">
+       <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 3 🍿</summary>
+  <div id="A">
+    <div class="fila">
+  <a href="https://archive.org/download/3x-01-source/3x01%28Source%29.mp4" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+  <a href="https://archive.org/download/3x-01-source/3x02%28Source%29.mp4" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+  <a href="https://archive.org/download/3x-01-source/3x03%28Source%29.mp4" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+  <a href="https://archive.org/download/3x-01-source/3x04%28Source%29_1.mp4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+  <a href="https://archive.org/download/3x-01-source/3x05%28Source%29_1.mp4" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+  <a href="https://archive.org/download/3x-01-source/3x06%28Source%29_1.mp4" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+  <a href="https://archive.org/download/3x-01-source/3x07%28Source%29_1.mp4" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+  <a href="https://archive.org/download/3x-01-source/3x08%28Source%29_1.mp4" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+  <a href="https://archive.org/download/3x-01-source/3x09%28Source%29_1.mp4" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+  <a href="https://archive.org/download/3x-01-source/3x10%28Source%29_1.mp4" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+  <a href="https://archive.org/download/3x-01-source/3x11%28Source%29_1.mp4" target="WILLOW"><img src="" title="11" id="I"/>11</a>
+  <a href="https://archive.org/download/3x-01-source/3x12%28Source%29_1.mp4" target="WILLOW"><img src="" title="12" id="I"/>12</a>
+  <a href="https://archive.org/download/3x-01-source/3x13%28Source%29_1.mp4" target="WILLOW"><img src="" title="13" id="I"/>13</a>
+  <a href="https://archive.org/download/3x-01-source/3x14%28Source%29.mp4" target="WILLOW"><img src="" title="14" id="I"/>14</a>
+     </div>
+  </div>
+</details>
 
-<audio id="1" src="https://archive.org/download/sergio-mendes-feat.-black-eyed-peas-mas-que-nada-mp-3-160-k-1/Sergio%20Mendes%20feat.%20Black%20Eyed%20Peas%20-%20Mas%20Que%20Nada%28MP3_160K%29_1.mp3"></audio>
+<hr style="height:1px; border:0"/>   
+  
+  <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 4 🍿</summary>
+  <div id="A">
+    <div class="fila">          
+  <a href="https://archive.org/download/4x-08-source-1/4x01%28Source%29.mp4" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x02%28Source%29.mp4" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x03%28Source%29.mp4" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x04%28Source%29.mp4" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x05%28Source%29.mp4" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x06%28Source%29.mp4" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x07%28Source%29_1.mp4" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x08%28Source%29_1.mp4" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x09%28Source%29.mp4" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x10%28Source%29.mp4" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x11%28Source%29.mp4" target="WILLOW"><img src="" title="11" id="I"/>11</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x12%28Source%29.mp4" target="WILLOW"><img src="" title="12" id="I"/>12</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x13%28Source%29.mp4" target="WILLOW"><img src="" title="13" id="I"/>13</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x14%28Source%29.mp4" target="WILLOW"><img src="" title="14" id="I"/>14</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x15%28Source%29.mp4" target="WILLOW"><img src="" title="15" id="I"/>15</a>
+  <a href="https://archive.org/download/4x-08-source-1/4x16%28Source%29.mp4" target="WILLOW"><img src="" title="16" id="I"/>16</a>
+</div>
+  </div>
+</details>
+
+<hr style="height:1px; border:0"/>    
+            
+   <details name="info">
+  <summary class="summary">🍿 TEMP 5 🍿</summary>  
+<hr style="height:1px; border:0"/>         
+       <div id="A"> 
+    <div class="fila">
+  <a href="https://geo.dailymotion.com/player.html?video=x8zjily" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+  <a href="https://drive.google.com/file/d/1-J8XHg0zwfBGMThsty21oyopBQx9dJOL/preview" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zkoku" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zkuqg" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zl6uw" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zlerc" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zlf8o" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zlit8" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+  <a href="https://drive.google.com/file/d/1G8wb4aSClhIiXbwKJsVjQZoqfMsCmsEQ/preview" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+  <a href="https://drive.google.com/file/d/1GjwNnTH8QcmcQw9MwzK4UYngM8M7tR8r/preview" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zlqeu" target="WILLOW"><img src="" title="11" id="I"/>11</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8znaec" target="WILLOW"><img src="" title="12" id="I"/>12</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8znfge" target="WILLOW"><img src="" title="13" id="I"/>13</a>
+  <a href="" target="WILLOW"><img src="" title="14-NO" id="I"/></a>
+  <a href="" target="WILLOW"><img src="" title="15-NO" id="I"/></a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8znq5c" target="WILLOW"><img src="" title="16" id="I"/>16</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8znre4" target="WILLOW"><img src="" title="17" id="I"/>17</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8znv6i" target="WILLOW"><img src="" title="18" id="I"/>18</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zpfgy" target="WILLOW"><img src="" title="19" id="I"/>19</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zpy6a" target="WILLOW"><img src="" title="20" id="I"/>20</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zr3wo" target="WILLOW"><img src="" title="21" id="I"/>21</a>
+  <a href="" target="WILLOW"><img src="" title="22-NO" id="I"/></a>
+  <a href="" target="WILLOW"><img src="" title="23-NO" id="I"/></a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zrqlg" target="WILLOW"><img src="" title="24" id="I"/>24</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zrqs8" target="WILLOW"><img src="" title="25" id="I"/>25</a>
+  <a href="https://geo.dailymotion.com/player.html?video=x8zvm8i" target="WILLOW"><img src="" title="26" id="I"/>26</a>
+</div>
+       </div>
+          </details> 
+            
+            
+<hr style="height:1px; border:0"/>                        
          
-<audio id="2" src="https://cdn-cf.vidyard.com/uploads/3940821/govideo/13e83770-8f2d-11ee-bbe1-5107ab9af334.mp4"></audio>
                 
- <audio id="3" autoplay src=""></audio>    
- 
-<audio id="4" src="https://ia600404.us.archive.org/19/items/efecto-maquina/Efecto%20%28M%C3%A1quina%29.mp3"></audio>
+  <details name="info" onclick="playSound()">
+  <summary class="summary">🍿 TEMP 6 🍿</summary><br/>
+     <div id="A">       
+       <div class="fila">
 
-<audio id="5" src="https://ia600404.us.archive.org/19/items/efecto-maquina/Efecto%20%28M%C3%A1quina%29.mp3"></audio>
-
-<input type="range" id="Volumen" min="0" max="1" step="0.01" value="1">
-          
-<script> 
-  var words = ["hiperativo", "ceder", "enraizado", "anarquicamente", "intriga", "trombone", "liturgia", "litígio", "musculatura", "fonoaudiólogo", "psiquiátrico", "xilofone", "incandescente", "transcendental", "intransigente", "declinar", "ostentoso", "seita", "metodologias", "substituir", "confundir", "autoria", "renegar", "minuciosamente", "estranhar", "boneco", "cometa", "castelhano", "borboleta", "carambola", "esquisito", "ferrugem", "girassol", "harmonia",
-  "invejoso", "jacaré", "lanterna", "madrugada", "neblina", "orvalho",
-  "paralelepípedo", "quimera", "rosquinha", "sorridente", "travesseiro",
-  "umbigo", "vagalume", "zangado", "azulejo", "bolacha", "escorregadio",
-  "fagulha", "guaxinim", "hipnose", "jiboia", "lambida", "maracujá"];
+  <a href="" target="WILLOW"><img src="" title="1-NO" id="I"/></a>
   
-
+  <a href="https://geo.dailymotion.com/player.html?video=x8zw8eo" target="WILLOW"><img src="" title="2" id="I"/>2</a>
   
-var wordToGuess = words[Math.floor(Math.random() * words.length)];
-var guessedLetters = [];
-var remainingGuesses = 9;
+  <a href="" target="WILLOW"><img src="" title="3-NO" id="I"/></a>
+  
+  <a href="" target="WILLOW"><img src="" title="4-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zwl3o" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zwnvc" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zz3oo" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zz4ja" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zz5fk" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zz5fm" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zzfpm" target="WILLOW"><img src="" title="11" id="I"/>11</a>
+  
+  <a href="" target="WILLOW"><img src="" title="12-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zzgp0" target="WILLOW"><img src="" title="13" id="I"/>13</a>
+  
+  <a href="" target="WILLOW"><img src="" title="14-NO" id="I"/></a>
+  
+  <a href="" target="WILLOW"><img src="" title="15-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x8zzgzk" target="WILLOW"><img src="" title="16" id="I"/>16</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x901irg" target="WILLOW"><img src="" title="17" id="I"/>17</a>
+  
+  <a href="" target="WILLOW"><img src="" title="18-NO" id="I"/></a>
+  
+  <a href="" target="WILLOW"><img src="" title="19-NO" id="I"/></a>
+  
+  <a href="" target="WILLOW"><img src="" title="20-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x9042t8" target="WILLOW"><img src="" title="21" id="I"/>21</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x905m64" target="WILLOW"><img src="" title="22" id="I"/>22</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x905wty" target="WILLOW"><img src="" title="23" id="I"/>23</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x905yg0" target="WILLOW"><img src="" title="24" id="I"/>24</a>
+  
+  <a href="" target="WILLOW"><img src="" title="25-NO" id="I"/></a>
+  
+  <a href="" target="WILLOW"><img src="" title="26-NO" id="I"/></a>
+  
+  <a href="" target="WILLOW"><img src="" title="27-NO" id="I"/></a>
 
-function displayWord() {
-  var displayString = '';
-  for (var i = 0; i < wordToGuess.length; i++) {
-    if (guessedLetters.includes(wordToGuess[i])) {
-      displayString += wordToGuess[i] + ' ';
-    } else {
-      displayString += '_ ';
+   </div>
+        </div>       
+          </details>    
+               
+ <hr style="height:1px; border:0"/>        
+                 
+                
+         <details name="info" onclick="playSound()">
+   <summary class="summary">🍿 TEMP 8 🍿</summary>
+<hr style="height:1px; border:0"/>         
+    <div id="A">       
+       <div class="fila">
+
+  <a href="https://geo.dailymotion.com/player.html?video=x95ipcg" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95ipi4" target="WILLOW"><img src="" title="2" id="I"/>2</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95mx3o" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95mxde" target="WILLOW"><img src="" title="4" id="I"/>4</a>
+  
+  <a href="" target="WILLOW"><img src="" title="5-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95rqc6" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95rr5q" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95rr80" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95rrh4" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+  
+  <a href="" target="WILLOW"><img src="" title="10-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95rsgg" target="WILLOW"><img src="" title="11" id="I"/>11</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95rshk" target="WILLOW"><img src="" title="12" id="I"/>12</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95tqrg" target="WILLOW"><img src="" title="13" id="I"/>13</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95trpw" target="WILLOW"><img src="" title="14" id="I"/>14</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95tsn6" target="WILLOW"><img src="" title="15" id="I"/>15</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95tvg2" target="WILLOW"><img src="" title="16" id="I"/>16</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95twfa" target="WILLOW"><img src="" title="17" id="I"/>17</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95twgq" target="WILLOW"><img src="" title="18" id="I"/>18</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95twku" target="WILLOW"><img src="" title="19" id="I"/>19</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95twnw" target="WILLOW"><img src="" title="20" id="I"/>20</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95xleo" target="WILLOW"><img src="" title="21" id="I"/>21</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x95xllu" target="WILLOW"><img src="" title="22" id="I"/>22</a>
+  
+  <a href="" target="WILLOW"><img src="" title="23-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x9610fg" target="WILLOW"><img src="" title="24" id="I"/>24</a>
+  
+  <a href="" target="WILLOW"><img src="" title="25-NO" id="I"/></a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x962ocw" target="WILLOW"><img src="" title="26" id="I"/>26</a>
+  
+  <a href="https://geo.dailymotion.com/player.html?video=x962whu" target="WILLOW"><img src="" title="27" id="I"/>27</a>
+
+     </div>
+        </div>                  
+         </details>                                          
+              
+
+<hr style="height:1px; border:0"/>        
+                 
+                 
+         <details name="info" onclick="playSound()">
+   <summary class="summary">🍿 TEMP 9 🍿</summary>
+<hr style="height:1px; border:0"/>         
+    <div id="A">       
+       <div class="fila">
+
+  <a href="https://geo.dailymotion.com/player.html?video=x969nb0" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+
+  <a href="" target="WILLOW"><img src="" title="2-NO" id="I"/></a>
+
+  <a href="" target="WILLOW"><img src="" title="3-NO" id="I"/></a>
+
+  <a href="" target="WILLOW"><img src="" title="4-NO" id="I"/></a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96hdg6" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96hdg8" target="WILLOW"><img src="" title="6" id="I"/>6</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96ki18" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96ki1a" target="WILLOW"><img src="" title="8" id="I"/>8</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96mfxw" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96ovik" target="WILLOW"><img src="" title="10" id="I"/>10</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96r9jq" target="WILLOW"><img src="" title="11" id="I"/>11</a>
+
+  <a href="" target="WILLOW"><img src="" title="12-NO" id="I"/></a>
+
+  <a href="" target="WILLOW"><img src="" title="13-NO" id="I"/></a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x96ymkg" target="WILLOW"><img src="" title="14" id="I"/>14</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x971a30" target="WILLOW"><img src="" title="15" id="I"/>15</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x973dys" target="WILLOW"><img src="" title="16" id="I"/>16</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x9763fs" target="WILLOW"><img src="" title="17" id="I"/>17</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x977zcg" target="WILLOW"><img src="" title="18" id="I"/>18</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x979s68" target="WILLOW"><img src="" title="19" id="I"/>19</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97bde2" target="WILLOW"><img src="" title="20" id="I"/>20</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97ezci" target="WILLOW"><img src="" title="21" id="I"/>21</a>
+
+  <a href="" target="WILLOW"><img src="" title="22-NO" id="I"/></a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97k7ga" target="WILLOW"><img src="" title="23" id="I"/>23</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97mv0g" target="WILLOW"><img src="" title="24" id="I"/>24</a>
+
+  <a href="" target="WILLOW"><img src="" title="25-NO" id="I"/></a>
+
+  <a href="" target="WILLOW"><img src="" title="26-MO" id="I"/></a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97qrju" target="WILLOW"><img src="" title="27" id="I"/>27</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97tjwm" target="WILLOW"><img src="" title="28" id="I"/>28</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97tmc8" target="WILLOW"><img src="" title="29" id="I"/>29</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97xdxe" target="WILLOW"><img src="" title="30" id="I"/>30</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x97zulo" target="WILLOW"><img src="" title="31" id="I"/>31</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x983n1a" target="WILLOW"><img src="" title="32" id="I"/>32</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x988akw" target="WILLOW"><img src="" title="33" id="I"/>33</a>
+
+  <a href="" target="WILLOW"><img src="" title="34-NO" id="I"/></a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x98enk8" target="WILLOW"><img src="" title="35" id="I"/>35</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x98gz4w" target="WILLOW"><img src="" title="36" id="I"/>36</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x98wjs0" target="WILLOW"><img src="" title="42" id="I"/>42</a>
+
+  <a href="" target="WILLOW"><img src="" title="43-NO" id="I"/></a>
+
+  <a href="" target="WILLOW"><img src="" title="44-NO" id="I"/></a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x994lbs" target="WILLOW"><img src="" title="45" id="I"/>45</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x997dr4" target="WILLOW"><img src="" title="46" id="I"/>46</a>
+
+    </div>
+      </div>                  
+         </details>                                          
+              
+
+<hr style="height:1px; border:0"/>        
+                 
+                  
+         <details name="info" onclick="playSound()">
+   <summary class="summary">🍿 TEMP 10 🍿</summary>
+<hr style="height:1px; border:0"/>         
+    <div id="A">       
+       <div class="fila">
+
+  <a href="https://geo.dailymotion.com/player.html?video=x999lyu" target="WILLOW"><img src="" title="1" id="I"/>1</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99c53q" target="WILLOW"><img src="" title="2" id="I"/>2</a>  
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99fiqq" target="WILLOW"><img src="" title="3" id="I"/>3</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99jilk" target="WILLOW"><img src="" title="4" id="I"/>4</a>  
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99mfng" target="WILLOW"><img src="" title="5" id="I"/>5</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99pti4" target="WILLOW"><img src="" title="6" id="I"/>6</a>  
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99pxy2" target="WILLOW"><img src="" title="7" id="I"/>7</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99s9ty" target="WILLOW"><img src="" title="8" id="I"/>8</a>  
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99w7vo" target="WILLOW"><img src="" title="9" id="I"/>9</a>
+
+  <a href="https://geo.dailymotion.com/player.html?video=x99y4ru" target="WILLOW"><img src="" title="10" id="I"/>10</a>              
+
+     </div>
+        </div>                  
+         </details>                                          
+             </div><br/>                       
+         <center><button id="fullscreenButton">Pantalla completa</button><br/>
+     
+<hr style="height: 10vh; border:0"/>         
+  
+<i id="opaco">🤣 AIDA 🤣</i>        
+                                  
+<script>
+var fullscreenButton = document.querySelector('#fullscreenButton');
+var iframe = document.querySelector('iframe');
+
+fullscreenButton.addEventListener('click', function() {
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) { // Firefox
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { // IE/Edge
+    iframe.msRequestFullscreen();
+  }
+});
+
+<!-- Detectar cuando entra o sale de fullscreen -->
+document.addEventListener('fullscreenchange', function() {
+  if (document.fullscreenElement) {
+    <!-- Si estamos en pantalla completa, bloquear orientación horizontal -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape');
+    }
+  } else {
+    <!-- Si salimos de pantalla completa, volver a orientación vertical -->
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('portrait');
     }
   }
-  document.getElementById('wordToGuess').textContent = displayString;
-}
-
-function checkLetter() {
-  var letter = letterInput.value.toLowerCase().trim();
-  if (guessedLetters.includes(letter)) {
-    mess.textContent = 'Ya has intentado esa letra.';
-  } else {
-    guessedLetters.push(letter);
-    if (!wordToGuess.includes(letter)) {
-      remainingGuesses--;
-      
-     contador.textContent = 'ViDAS: ' + remainingGuesses; 
-      
-    }
-    mess.textContent = '';
-    letterInput.value = '';
-    displayWord();
-    displayGuessedLetters();
-    checkGameEnd();
-  }
-} 
-          <!-- ENTER -->
-
-letterInput.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                
-    checkLetter();
-}
 });
-
-function displayGuessedLetters() {
-    document.querySelector('#guessedLetters').textContent = '' + guessedLetters.join(', ');
-}
-
-function checkGameEnd() {
-  if (remainingGuesses === 0) {
-     
-     miss.textContent = 'Game Over!';
-     
-    var audio = 
-document.getElementById('5');
-    audio.play();   
-    
- letterInput.style.display = 'none';
- Buscar.style.display = 'none';
- document.body.setAttribute("class", "L");
-     
-  } else if (!document.querySelector('#wordToGuess').textContent.includes('_')) {
-    message.textContent = 'You Win!';
-    
-    var audio = 
-document.getElementById('4');
-    audio.play();
-    
- letterInput.style.display = 'none';
- Buscar.style.display = 'none';
- document.body.setAttribute("class", "G");
-  }
-}
-
-displayWord();
-
 </script>
-
-         <!-- AUDIO -->
-       
 <script>
-
-letterInput.addEventListener('click', function() {
-  var audio = document.getElementById('1');
-  audio.play();
-});
-
-Buscar.addEventListener('click', function() {
-  var audio = document.getElementById('2');
-  audio.play();
-});
-
-
-function play3(){
-    var audio = document.getElementById("3");
-      audio.play();
-}
-
-Music.addEventListener('click', function(){
-    
-  Music.style.animation = 'toon 3s linear infinite running';
-});
-
+  var TOTAL = document.querySelectorAll('#Total img');
+    TOTAL.forEach(total => {
+       total.src = 'https://da.gd/R0SPFh';          
+ });
 </script>
-
-
 <script>
-Clon.addEventListener('click', function(){
-    location.reload();
+  var LINKS = document.querySelectorAll('#Total a');
 
+ LINKS.forEach(links => {
+  links.onclick = () => {
+     LINKS.forEach(other => {
+        other.style.color = 'gold';
+        other.style.background = '#800050'
+  });      
+      links.style.color = 'red';      
+   links.style.background = 'gold';
+   };
 });
 </script>
-
-<script>
-function recaRgar() {
-  location.reload();
-}
-</script>
-
-<script>
-Music.addEventListener("click", function() {
-  if (Volumen.style.display === 'block') {
-   Volumen.style.display = 'none';
-  } else {
-   Volumen.style.display = 'block';
-  }
-}); 
-
-Volumen.addEventListener('input', function() {
-    var audio = document.getElementById('1');
-    audio.volume = this.value;
-});
-</script>
-
-<script>
-window.onload = function() {
-    Modal.style.display = 'none';
-}
-</script>
- 
 </body>
 </html>
 
-<!-- <h3><span id="D">D</span><span id="Menta">MENTA🍭</span></h3> -->
- 
+
+
+
 
 
 
