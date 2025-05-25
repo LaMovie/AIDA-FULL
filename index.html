@@ -551,6 +551,13 @@ document.addEventListener('fullscreenchange', function() {
 });
 </script>
 <script>
+     window.onload = () => {
+       if (window.innerWidth > window.innerHeight) {
+     iframe.style.height = '200px';
+   }
+ };
+</script>           
+<script>
   var TOTAL = document.querySelectorAll('#Total img');
     TOTAL.forEach(total => {
        total.src = 'https://da.gd/R0SPFh';          
